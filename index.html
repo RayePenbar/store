@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Mens Fashion Website</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="main/styles.css">
+  </head>
+  <header>
+    <nav>
+        <ul class="menu">
+         <li>HOME</li>
+         <li>MENS CLOTHING</li>
+         <li>ACCESSOIRES</li>
+         <li>ABOUT</li>
+         <li>CONTACT</li>
+      </ul>
+    </nav>
+  </header>
+  <body>
+    <div class="hero_img">
+      <div class="sales">
+        <h1>SUMMERTIME SALE</h1>
+        <h3>Select items 20% off!</h3>
+      </div>
+    </div>
+    <id class="wrapper">
+      <div class="article_structure">
+        <div class="designer_headshot border"></div>
+        <div class="article_hook border">
+          <h3>TAILORED LOOK</h3>
+          <h4>/tailored/ /look/</h4>
+          <p>The act of creating clothing that has a desinged edge to it, thus imparting a look of style and stature</p>
+        </div>
+        <div class="article_start border">
+          <h2>LET US SHOW YOU HOW ITS DONE</h2>
+          <p class="subtitle">We invited Tik Tocks fashion guru for some fashion tips!</p>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni saepe iusto enim quis officia perspiciatis quidem ullam, quas cupiditate recusandae, eveniet doloribus minima, hic magnam voluptatibus! Itaque nobis quisquam voluptas.</p>
+        </div>
+      </div>
+    </id>
+
+    <footer>
+
+    </footer>
+  </body>
+  <script>
+    const toggle = document.querySelector(".toggle");
+const menu = document.querySelector(".menu");
+const items = document.querySelectorAll(".item");
+/* Toggle mobile menu */
+function toggleMenu() {
+  if (menu.classList.contains("active")) {
+    menu.classList.remove("active");
+    toggle.querySelector("a").innerHTML = "<i class='fas fa-bars'></i>";
+  } else {
+    menu.classList.add("active");
+    toggle.querySelector("a").innerHTML = "<i class='fas fa-times'></i>";
+  }
+}
+/* Activate Submenu */
+function toggleItem() {
+  if (this.classList.contains("submenu-active")) {
+    this.classList.remove("submenu-active");
+  } else if (menu.querySelector(".submenu-active")) {
+    menu.querySelector(".submenu-active").classList.remove("submenu-active");
+    this.classList.add("submenu-active");
+  } else {
+    this.classList.add("submenu-active");
+  }
+}
+/* Close Submenu From Anywhere */
+function closeSubmenu(e) {
+  let isClickInside = menu.contains(e.target);
+
+  if (!isClickInside && menu.querySelector(".submenu-active")) {
+    menu.querySelector(".submenu-active").classList.remove("submenu-active");
+  }
+}
+/* Event Listeners */
+toggle.addEventListener("click", toggleMenu, false);
+for (let item of items) {
+  if (item.querySelector(".submenu")) {
+    item.addEventListener("click", toggleItem, false);
+  }
+  item.addEventListener("keypress", toggleItem, false);
+}
+document.addEventListener("click", closeSubmenu, false);
+  </script>
+</html>
